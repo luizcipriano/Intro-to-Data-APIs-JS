@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Coding Train: Data/APIs 1</title>
 </head>
+
 <body>
-  
+
+  <h1 style="
+    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);   -webkit-background-clip: text;
+  color: transparent; text-align: center; font-size: 90px;
+  ">Fetch Rainbows</h1>
+
 </body>
+<script>
+  console.log('about to fetch some rainbows');
+  const filenames = [
+    './img/arco-iris01.jpg',
+    './img/arco-iris02.jpg',
+    './img/arco-iris03.jpg'
+  ];
+
+  catchRainbows(filenames)
+    .then(response => {
+      console.log('yay');
+    })
+    .catch(error => {
+      console.log('error!');
+      console.error(error);
+    });
+
+  async function catchRainbows(filenames) {
+    for (let filename of filenames) {
+      const response = await fetch(filename);
+      const blob = await response.blob();
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(blob);
+      img.width = '200';
+      document.body.append(img);
+    }
+  }
+
+
+</script>
+
 </html>
